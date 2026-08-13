@@ -1,0 +1,5 @@
+13.08
+Resumed learning Django and the whole Backend. Hope myself goodluck
+Today just started Django project and a simple view.
+
+ 
