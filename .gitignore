@@ -1,0 +1,6 @@
+venv/
+
+conf/__pycache__/
+home/__pycache__/
+/__pycache__/
+.idea/
