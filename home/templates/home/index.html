@@ -6,17 +6,29 @@
 </head>
 <body>
     <h1>Index HTML</h1>
-    <h2>{{ title }}</h2>
+    <h2>{{ main_title|default:"No title" }}</h2>
+    <h2>{{ title|capfirst }}</h2>
     <li>{{ menu }}</li>
+    <li>First:{{ menu|first }}</li>
+    <li>Last:{{ menu|last }}</li>
+    <li>Join:{{ menu|join:"_" }}</li>
+    <li>Length:{{ menu|length }}</li>
+    <li>Slugify:{{ str|slugify }}</li>
     <ul>{{ menu.0 }}</ul>
     <ul>{{ menu.1 }}</ul>
     <ul>{{ menu.2 }}</ul>
-    <p>{{ float }}</p>
+    <p>{{ float|add:"5" }}</p>
+    <p>{{ price|divisibleby:"2" }}</p>
+    <p>{{ price|divisibleby:"3" }}</p>
+    <p>{{ price|divisibleby:"4" }}</p>
+    <p>{{ price|divisibleby:"6" }}</p>
     <p>{{ lst }}</p>
     <p>{{ set }}</p>
     <p>{{ dict }}</p>
     <p>{{ obj }}</p>
     <p>{{ obj }}'s "a" element is {{ obj.a }}</p>
     <p>{{ obj }}'s "b" element is {{ obj.b }}</p>
+    <p>{{ str|cut:"t" }}</p>
+    <p>{{ question_str|cut:" "|cut:"?" }}</p>
 </body>
 </html>

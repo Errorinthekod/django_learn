@@ -66,7 +66,10 @@ def rndr_to_str(request):
 
 def rndr_html(request):
     data = {
-        "title": "Index page",
+        "title": "index page",
+        "str": "test string django",
+        "question_str": "What is Django?",
+        "price": 36,
         "menu": menu,
         "float": 3.14,
         "lst": [1, 2, 3, 'abc', True],
