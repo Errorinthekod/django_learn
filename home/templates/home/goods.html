@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Goods</title>
+</head>
+<body>
+    <p>Goods</p>
+    <ul>
+        <li><a href="{% url 'home' %}">Main Page</a></li>
+        {% for m in main_menu %}
+        {% if not forloop.last %}
+        <li>
+        {% else %}
+        <li class = "last">
+        {% endif %}
+
+            <p><a href="{% url m.url_name %}">{{ m.name }}</a></p>
+        </li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for g in goods %}
+        {% if g.is_active %}
+        <li>
+            <h2>{{ g.title }}</h2>
+            <p>{{ g.description }}</p>
+            <p><a href = "{% url 'show_goods_html' g.id %}">Watch more</a></p>
+            {% if not forloop.last %}
+            <hr>
+            {% endif %}
+        </li>
+        {% endif %}
+        {% endfor %}
+
+    </ul>
+</body>
+</html>
