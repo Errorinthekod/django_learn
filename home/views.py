@@ -1,9 +1,15 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 
-# Create your views here.
+menu = ["Main page", "About", "Login"]
+
+class MyClass:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
 
 def first(request):
     return HttpResponse("First view")
@@ -53,3 +59,23 @@ def post_request(request, cat_slug):
 def page_not_found(request, exception):
     return HttpResponseNotFound("<h1>Page not found</h1>")
 
+
+def rndr_to_str(request):
+    r =  render_to_string("home/index.html")
+    return HttpResponse(r)
+
+def rndr_html(request):
+    data = {
+        "title": "Index page",
+        "menu": menu,
+        "float": 3.14,
+        "lst": [1, 2, 3, 'abc', True],
+        "set": {"KG", "KZ", "UZ"},
+        "dict": {
+            "k1": "v1",
+            "k2": "v2",
+        },
+        "obj": MyClass(10, 20),
+
+    }
+    return render(request, "home/index.html", context=data)

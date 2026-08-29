@@ -11,5 +11,7 @@ urlpatterns = [
     path("slug_view/<slug:cat_slug>/", views.slug, name = "slug"),
     path("post_view/<slug:cat_slug>/", views.post_request, name = "post"),
     # re_path(r"^archive/(?P<year>[0-9]{4})/", views.archive)
-    path("archive/<year4:year>/", views.archive, name = "archive")
+    path("archive/<year4:year>/", views.archive, name = "archive"),
+    path("rndr_to_str/", views.rndr_to_str, name = "render_to_string"),
+    path("rndr_html/", views.rndr_html, name = "render_html"),
 ]
