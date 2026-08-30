@@ -98,9 +98,10 @@ def rndr_html(request):
 
 def dataDB(request):
     data = {
+        "title": "Goods",
         "main_menu": main_menu,
         "goods": data_db,
-
+        "info": "Goods are good",
     }
     return render(request, "home/goods.html", context = data)
 
@@ -109,7 +110,7 @@ def show_goods(request, goods_id):
     return HttpResponse(f"Goods with id:{goods_id}")
 
 def about(request):
-    return HttpResponse("About")
+    return render(request, "home/about.html", {"title": "About", "main_menu": main_menu})
 
 def login(request):
     return HttpResponse("Login")

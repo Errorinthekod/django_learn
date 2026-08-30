@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Goods</title>
-</head>
-<body>
-    <p>Goods</p>
-    <ul>
-        <li><a href="{% url 'home' %}">Main Page</a></li>
-        {% for m in main_menu %}
-        {% if not forloop.last %}
-        <li>
-        {% else %}
-        <li class = "last">
-        {% endif %}
-
-            <p><a href="{% url m.url_name %}">{{ m.name }}</a></p>
-        </li>
-        {% endfor %}
-    </ul>
+{% extends 'base.html' %}
+{% block content %}
+    <title>{{ title }}</title>
+    {% include 'home/includes/nav.html' %}
     <ul>
         {% for g in goods %}
         {% if g.is_active %}
@@ -34,5 +17,9 @@
         {% endfor %}
 
     </ul>
-</body>
-</html>
+<!--Includes only nav.html with the certain variable -->
+    {% include 'home/includes/nav.html' only with info='info' %}
+<br>
+<!--Includes only nav.html-->
+    {% include 'home/includes/nav.html' only %}
+{% endblock %}

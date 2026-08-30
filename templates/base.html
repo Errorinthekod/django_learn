@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Base</title>-->
+</head>
+<ul>
+    <li><a href="{% url 'home' %}">Main Page</a></li>
+    {% for m in main_menu %}
+    {% if not forloop.last %}
+    <li>
+        {% else %}
+    <li class = "last">
+        {% endif %}
+
+        <p><a href="{% url m.url_name %}">{{ m.name }}</a></p>
+    </li>
+    {% endfor %}
+</ul>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>
