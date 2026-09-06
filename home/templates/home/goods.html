@@ -7,7 +7,10 @@
         {% if g.is_active %}
         <li>
             <h2>{{ g.title }}</h2>
-            <p>{{ g.description }}</p>
+<!--            <p>{{ g.description }}</p>-->
+            {% autoescape off%}
+            <p>{{ g.description|linebreaks|truncatewords:40 }}</p>
+            {% endautoescape%}
             <p><a href = "{% url 'show_goods_html' g.id %}">Watch more</a></p>
             {% if not forloop.last %}
             <hr>
