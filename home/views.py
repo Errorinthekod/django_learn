@@ -1,3 +1,4 @@
+from django.contrib.sitemaps.views import index
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -21,6 +22,12 @@ data_db = [
     {"id": 1, "title": "Goods 1", "description": "The bad goods", "is_active": True},
     {"id": 2, "title": "Goods 2", "description": "The good goods", "is_active": False},
     {"id": 3, "title": "Goods 3", "description": "The good goods", "is_active": True}
+]
+
+cats_db = [
+    {"id": 1, "name": "For home"},
+    {"id": 2, "name": "Clothes"},
+    {"id": 3, "name": "Food"},
 ]
 
 def first(request):
@@ -118,3 +125,11 @@ def login(request):
 def contact(request):
     return HttpResponse("pywask")
 
+def show_category(request, cat_id):
+    data = {
+        "title": "Show category",
+        "menu": main_menu,
+        "goods": data_db,
+        "cat_selected": cat_id,
+    }
+    return render(request, "home/index.html", context=data)

@@ -19,5 +19,5 @@ urlpatterns = [
     path("rndr_html/", views.rndr_html, name = "render_html"),
     path("goods/", views.dataDB, name = "goods_html"),
     path("goods_id/<int:goods_id>/", views.show_goods, name = "show_goods_html"),
-
+    path("category/<int:cat_id>/", views.show_category, name = "category")
 ]
