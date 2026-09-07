@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+</head>
+<body>
+<h1>Menu</h1>
+<h3><a href="">Main Page</a></h3>
+{% for m in menu %}
+<h3><a href = "#">{{ m.name }}</a></h3>
+<!--TODO: make the links work-->
+
+{% endfor %}
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
+

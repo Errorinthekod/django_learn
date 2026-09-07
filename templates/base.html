@@ -1,4 +1,4 @@
-
+{% load static %}
 {% load hometags %}
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 {% if cat_selected == 0 %}
 
 {% show_categories cat_selected %}
-
+{% endif %}
 {% block content %}
 {% endblock %}
 </body>

@@ -23,7 +23,8 @@ handler404 = page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("home.urls"))
+    path("", include("home.urls")),
+    path("vacancy/", include("vacancy.urls"))
 ]
 
 
