@@ -1,0 +1,16 @@
+h1 {
+    color: blue;
+    font-size: 64px;
+}
+h2 {
+    color: darkblue;
+    font-size: 32px;
+}
+
+* {
+    background-color: #767676;
+}
+
+p {
+    color: purple;
+}

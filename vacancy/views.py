@@ -45,6 +45,7 @@ def vacancy_details(request, vac_id):
 def category_by_slug(request, cat_slug):
     data = {
         "title": "Categories",
+        "menu": header_menu,
         "cat_slug": cat_slug,
     }
     return render(request, "vacancy/category_by_slug.html", context = data)
