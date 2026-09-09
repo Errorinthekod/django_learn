@@ -8,11 +8,21 @@ header_menu = [
 ]
 
 vacancy_list = [
-    {"id": 1, "title": "Python developer", "company": "Devano", "is_active": True, "date": "2026-09-09", "requirements": ("Django", "FastAPI", "Docker", "PostgreSQL")},
-    {"id": 2, "title": "Python developer", "company": "Metalab", "is_active": True, "date": "2026-09-09", "requirements": ("Django", "FastAPI", "Docker", "PostgreSQL")},
-    {"id": 3, "title": "Python developer", "company": "T Company", "is_active": False, "date": "2026-09-09", "requirements": ("Django", "FastAPI", "Docker", "PostgreSQL")},
-    {"id": 4, "title": "Go developer", "company": "Retone", "is_active": True, "date": "2026-09-09", "requirements": ("Go", "Microservices", "Docker", "PostgreSQL")},
-    {"id": 5, "title": "C# developer", "company": "KGAME", "is_active": True, "date": "2026-09-09", "requirements": (".NET", "nugget", "Docker", "PostgreSQL")},
+    {"id": 1, "title": "Python developer", "company": "Devano", "is_active": True,
+     "date": "2026-09-09", "requirements": ("Django", "FastAPI", "Docker", "PostgreSQL")
+     ,"description": "Vacancy for Python developer. Requirements are crazy"},
+    {"id": 2, "title": "Python developer", "company": "Metalab", "is_active": True,
+     "date": "2026-09-09", "requirements": ("Django", "FastAPI", "Docker", "PostgreSQL")
+     ,"description": "Vacancy for Python developer. Requirements are crazy"},
+    {"id": 3, "title": "Python developer", "company": "T Company", "is_active": False,
+     "date": "2026-09-09", "requirements": ("Django", "FastAPI", "Docker", "PostgreSQL")
+     ,"description": "Vacancy for Python developer. Requirements are crazy"},
+    {"id": 4, "title": "Go developer", "company": "Retone", "is_active": True,
+     "date": "2026-09-09", "requirements": ("Go", "Microservices", "Docker", "PostgreSQL")
+     ,"description": "Vacancy for Go developer. Requirements are crazy"},
+    {"id": 5, "title": "C# developer", "company": "KGAME", "is_active": True,
+     "date": "2026-09-09", "requirements": (".NET", "nugget", "Docker", "PostgreSQL")
+     ,"description": "Vacancy for C# developer. Requirements are crazy"}
 ]
 
 def main(request):
@@ -30,3 +40,11 @@ def vacancy_details(request, vac_id):
         "vac_selected": vac_id,
     }
     return render(request, "vacancy/vacancy_details.html", context = data)
+
+
+def category_by_slug(request, cat_slug):
+    data = {
+        "title": "Categories",
+        "cat_slug": cat_slug,
+    }
+    return render(request, "vacancy/category_by_slug.html", context = data)

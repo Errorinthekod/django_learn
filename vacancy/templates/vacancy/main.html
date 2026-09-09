@@ -6,14 +6,14 @@
 {% for v in vacancy_list %}
 {% if v.is_active %}
 <h2>{{ v.title|capfirst|linebreaks|truncatewords:"20" }}<a href = "{% url 'vacancy_details' v.id %}">Watch more</a></h2>
+<p>{{ v.description|capfirst|linebreaks|truncatewords:"4" }}</p>
 <h2>{{ v.company }}</h2>
 <p> {{ v.requirements|join:", " }}</p>
 <p> {{ v.date }}</p>
-
 <hr>
 {% endif %}
 {% endfor %}
-{% endblock%}
+{% endblock %}
 
 
 
