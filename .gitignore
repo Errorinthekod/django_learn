@@ -1,9 +1,7 @@
 venv/
 
 
-conf/__pycache__/
-conf/__pycache__/*
-home/__pycache__/
-home/migrations/__pycache__/
-/__pycache__/
+
+__pycache__/
+*.py[cod]
 .idea/
