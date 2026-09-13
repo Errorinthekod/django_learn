@@ -4,6 +4,10 @@ from django.db import models
 
 
 class Category(models.Model):
+    """
+    Category of Vacancy
+    Category example: Developer
+    """
     name = models.CharField(max_length=100, verbose_name="Category Name", unique=True)
     description = models.TextField(verbose_name="Category Description", null=True, blank=True)
 
@@ -20,6 +24,10 @@ class Category(models.Model):
 
 
 class Tag(models.Model):
+    """
+    Tag of Vacancy
+    Tag example: Backend
+    """
     name = models.CharField(max_length=100, verbose_name="Tag Name", unique=True)
     description = models.TextField(verbose_name="Tag Description", null=True, blank=True)
 
@@ -36,6 +44,10 @@ class Tag(models.Model):
 
 
 class Source(models.Model):
+    """
+    Source of Vacancy
+    Source example: Dev kg
+    """
     name = models.CharField(max_length=100, verbose_name="Source Name", unique=True)
     url = models.URLField(verbose_name="Source URL", unique=True)
 
