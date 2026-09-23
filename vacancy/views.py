@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Vacancy, Category
 # Create your views here.
 
 vac_cats = {
@@ -46,7 +46,7 @@ header_menu = [
 ]
 
 
-vacancy_list = [
+vacancy_lst = [
     {"id": 1, "title": "Python developer", "company": "Devano", "is_active": True,
      "date": "2026-09-09", "requirements": ("Django", "FastAPI", "Docker", "PostgreSQL")
      ,"description": "Vacancy for Python developer. Requirements are crazy"},
@@ -90,3 +90,11 @@ def category_by_slug(request, cat_slug):
     return render(request, "vacancy/category_by_slug.html", context = data)
 
 
+def vacancy_list(request):
+    queryset = Vacancy.objects.all()
+    data = {
+        "title": "Vacancy List",
+        "menu": header_menu,
+        "vacancy_list": queryset,
+    }
+    return render(request, "vacancy/vacancy_list.html", context = data)

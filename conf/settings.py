@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3-rd party
+    'django_extensions',
+
     # APPS
     'home.apps.HomeConfig',
     'vacancy.apps.VacancyConfig',
