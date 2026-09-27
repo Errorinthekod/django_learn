@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% for fv in filtered_vacancies %}
+    <h3>{{ fv.title }}</h3>
+    <p>{{ fv.position }}</p>
+    <p>{{ fv.company }}</p>
+    <p>{{ fv.source }}</p>
+    {% endfor %}
+</body>
+</html>

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import Http404, HttpResponse
+from django.shortcuts import render, get_object_or_404
 from .models import Vacancy, Category
 # Create your views here.
 
@@ -72,13 +73,13 @@ def main(request):
     }
     return render(request, "vacancy/main.html", context=data)
 
-def vacancy_details(request, vac_id):
-    data = {
-        "title": "Vacancy Details",
-        "menu": header_menu,
-        "vac_selected": vac_id,
-    }
-    return render(request, "vacancy/vacancy_details.html", context = data)
+# def vacancy_details(request, vac_id):
+#     data = {
+#         "title": "Vacancy Details",
+#         "menu": header_menu,
+#         "vac_selected": vac_id,
+#     }
+#     return render(request, "vacancy/vacancy_details.html", context = data)
 
 
 def category_by_slug(request, cat_slug):
@@ -98,3 +99,56 @@ def vacancy_list(request):
         "vacancy_list": queryset,
     }
     return render(request, "vacancy/vacancy_list.html", context = data)
+
+def vacancy_details(request, pk):
+    try:
+        vacancy = Vacancy.objects.get(pk = pk)
+    except Vacancy.DoesNotExist:
+        raise Http404("No Vacancy matches the given query.")
+
+    data = {
+        "title": f"Vacancy {pk}",
+        "vacancy": vacancy,
+    }
+    return render(
+        request,
+        "vacancy/vacancy_details.html",
+        context = data
+    )
+
+def vacancy_filtered(request, filters):
+    queryset = Vacancy.objects.filter(
+        title__icontains = filters,
+        # AND
+        position__icontains = filters)
+    data = {
+        "title": "Vacancy Filtered",
+        "filtered_vacancies": queryset,
+
+    }
+    return render(
+        request,
+        "vacancy/vacancy_filtered.html",
+        context = data,
+    )
+
+
+def vacancy_by_slug(request, vac_slug):
+    vacancy = get_object_or_404(Vacancy, slug = vac_slug)
+
+    data = {
+        "title": f"Vacancy {vac_slug}",
+        "vacancy": vacancy,
+        "vac_selected": 1,
+    }
+
+    return render(request, "vacancy/vacancy_by_slug.html", context = data)
+
+
+def active_vacancies(request):
+    queryset = Vacancy.actives.all()
+
+    return render(request,
+                  "vacancy/active_vacancies.html",
+                  {"vacancies": queryset})
+

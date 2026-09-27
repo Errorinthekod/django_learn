@@ -6,6 +6,23 @@
 </head>
 <body>
     <h1>{{ title }}</h1>
-    <h2>Details of vacancy number {{ vac_selected }} </h2>
+    <h2>Details of vacancy number {{ vacancy.pk }} </h2>
+    <ul>
+        <li><p>
+            {{ vacancy.title }}
+
+        </p></li>
+        <li><p>
+            {{ vacancy.position }}
+
+        </p></li>
+        <li><p>
+            {{ vacancy.salary }}
+
+        </p></li>
+        <li><p>
+            {{ vacancy.source }}
+        </p></li>
+    </ul>
 </body>
 </html>

@@ -1,5 +1,10 @@
 from django.db import models
+from django.urls import reverse
 
+
+class ActiveManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active = 1)
 
 
 
@@ -8,12 +13,18 @@ class Category(models.Model):
     Category of Vacancy
     Category example: Developer
     """
+
+    class Status(models.IntegerChoices):
+        DRAFT = 0, "DRAFT"
+        ACTIVE = 1, "ACTIVE"
+
     name = models.CharField(max_length=100, verbose_name="Category Name", unique=True)
     description = models.TextField(verbose_name="Category Description", null=True, blank=True)
+    slug = models.SlugField(max_length=255, unique = True, db_index = True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-    is_active = models.BooleanField(default=True, verbose_name="Category Status")
+    is_active = models.BooleanField(choices=Status.choices, default = Status.ACTIVE, verbose_name="Category Status")
 
     class Meta:
         verbose_name = "Category"
@@ -22,18 +33,26 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("vacancy", kwargs= {"vacancy_slug": self.slug})
+
 
 class Tag(models.Model):
     """
     Tag of Vacancy
     Tag example: Backend
     """
+
+    class Status(models.IntegerChoices):
+        DRAFT = 0, "DRAFT"
+        ACTIVE = 1, "ACTIVE"
+
     name = models.CharField(max_length=100, verbose_name="Tag Name", unique=True)
     description = models.TextField(verbose_name="Tag Description", null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-    is_active = models.BooleanField(default = True, verbose_name = "Tag Status")
+    is_active = models.BooleanField(choices=Status.choices, default = Status.ACTIVE, verbose_name = "Tag Status")
 
     class Meta:
         verbose_name = "Tag"
@@ -68,6 +87,11 @@ class Vacancy(models.Model):
         MIDDLE      = "MD", "Middle"
         SENIOR      = "SR", "Senior"
         ARCHITECT   = "AR", "Architect"
+
+    class Status(models.IntegerChoices):
+        # NAME = value, label
+        DRAFT = 0, "DRAFT"
+        ACTIVE = 1, "ACTIVE"
 
     title = models.CharField(max_length=100, verbose_name="Vacancy Title")
     company = models.CharField(max_length=100, verbose_name="Vacancy Company")
@@ -117,12 +141,20 @@ class Vacancy(models.Model):
         related_name="vacancies",
         verbose_name="Vacancy Source")
     source_url = models.URLField(unique=True, verbose_name="Vacancy Source URL")
+    slug = models.SlugField(max_length = 255, unique = True, db_index=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True, verbose_name="Vacancy Status")
+    is_active = models.BooleanField(choices=Status.choices, default=Status.ACTIVE, verbose_name="Vacancy Status")
+
+    objects  = models.Manager()
+    actives = ActiveManager()
 
     class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["created_at"]),
+        ]
         verbose_name = "Vacancy"
         verbose_name_plural = "Vacancies"
 

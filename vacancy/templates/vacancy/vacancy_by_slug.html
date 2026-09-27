@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<title>{{ title }}</title>
+
+<p>{{ vacancy.title }}</p>
+<p>{{ vacancy.position|linebreaks }}</p>
+
+
+{% endblock %}
