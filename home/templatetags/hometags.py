@@ -1,5 +1,6 @@
 from django import template
 import home.views as views
+from vacancy.models import Category
 
 register = template.Library()
 
@@ -9,5 +10,5 @@ def get_categories():
 
 @register.inclusion_tag('home/list_categories.html')
 def show_categories(cat_selected = 0):
-    cats = views.cats_db
+    cats = Category.objects.all()
     return {"cats": cats, "cat_selected": cat_selected}

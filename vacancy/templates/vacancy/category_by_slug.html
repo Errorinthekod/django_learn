@@ -4,6 +4,12 @@
 <title>{{ title|capfirst }}</title>
 <h1>Category: {{ cat_slug|capfirst }}</h1>
 
+{% for v in vacancies %}
+<li><h1>{{ v.category.name }}</h1></li>
+<li><p>{{ v.title }} - {{ v.updated_at|date:"d-m-Y H:i:s"}}</p></li>
+<li>{{ v.company }}</li>
+
+{% endfor %}
 
 {% endblock %}
 

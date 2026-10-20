@@ -34,7 +34,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("vacancy", kwargs= {"vacancy_slug": self.slug})
+        return reverse("category", kwargs= {"cat_slug": self.slug})
 
 
 class Tag(models.Model):

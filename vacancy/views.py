@@ -83,10 +83,15 @@ def main(request):
 
 
 def category_by_slug(request, cat_slug):
+    category = get_object_or_404(Category, slug = cat_slug)
+    vacancies = Vacancy.actives.filter(category_id = category.pk)
+
     data = {
-        "title": "Categories",
+        "title": f"Categories {category.name}",
         "menu": header_menu,
+        "vacancies": vacancies,
         "cat_slug": cat_slug,
+        "cat_selected": category.pk,
     }
     return render(request, "vacancy/category_by_slug.html", context = data)
 
@@ -151,4 +156,5 @@ def active_vacancies(request):
     return render(request,
                   "vacancy/active_vacancies.html",
                   {"vacancies": queryset})
+
 
